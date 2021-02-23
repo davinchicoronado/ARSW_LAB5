@@ -1,0 +1,16 @@
+* ¿Qué condiciones de carrera se podrían presentar?
+
+    - Cuando se pretenda realizar un POST, ya que cuando se hace un POST se están agregando nuevos blueprints, y puede que
+      exista otra petición GET que esté consultando esta Lista de blueprints por lo cual tendría información que se podria entrecruzar y podria tener datos incorrectos
+
+    - Al momento de realizar una petición PUT, ya que se está modificando un blueprint, y puede llegar el caso donde
+      exista otra petición GET o POST que esté consultando esta Lista de blueprints por lo cual tendría información no verídica.
+
+* Cuales son las respectivas regiones críticas?
+
+    - Los métodos POST, GET y PUT puesto que estos acceden al servicio blueprintsServices, estaclase será la responsable
+      de atender las solicitudes que cada uno de estos métodos realicen.
+
+ * Estrategias y Solución Aplicada.
+
+    - Se decide utilizar un @Synchronous para evitar las condiciones de carrera cuando consultamos con un GET o cuando podemos añadir un plano con un POST
